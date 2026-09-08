@@ -1,114 +1,118 @@
 # MATRIX2.0
 
-An Experimental Mathematical & Computational Research Platform
+An Open-Source Complexity-to-Simplicity Mathematical Research Engine
 
 ---
 
-## Scientific & Technical Disclaimer
+> *MATRIX2.0 lets you turn simple inputs into experiments and explore complex mathematical behavior step by step.*
 
-> *MATRIX2.0 is an experimental computational framework. Its hypotheses should be evaluated through reproducible experiments rather than treated as established scientific facts.*
-
----
-
-## Interactive Learning Philosophy
-
-> **MATRIX2.0 is not only something to read. It is something to explore.**
-
-$$\text{PLAY} \longrightarrow \text{OBSERVE} \longrightarrow \text{QUESTION} \longrightarrow \text{TEST} \longrightarrow \text{UNDERSTAND}$$
-
-Through the **MATRIX2.0 Explorer** (`explorer/`), users can interactively adjust parameters, ask *"What If?"*, validate challenges, and unlock achievements while mastering wave dynamics and symbolic state transformations.
+$$\text{HUMAN INPUT} \rightarrow \text{SYMBOL} \rightarrow \text{NUMBER} \rightarrow \text{STATE} \rightarrow \text{WAVE} \rightarrow \text{PARTICLES} \rightarrow \text{DYNAMICS} \rightarrow \text{CHAOS} \rightarrow \text{MEASUREMENT} \rightarrow \text{EXPLANATION} \rightarrow \text{DISCOVERY}$$
 
 ---
 
-## 1. What is MATRIX2.0?
+## Scientific & Epistemological Disclaimer
 
-MATRIX2.0 is an open-source research platform designed to model symbolic information (such as text input or discrete signals) as dynamic mathematical state vectors. Initial parameters evolve over time through wave equations, controlled chaotic noise, and parameter variation.
+> *MATRIX2.0 is an experimental computational framework. Its hypotheses should be evaluated through reproducible experiments rather than treated as established physical facts or claims of consciousness.*
 
-## 2. Why does it exist?
+---
 
-The project explores how symbolic information maps into continuous dynamical wave systems, providing a lightweight, testable framework for:
-- Symbolic encoding and decoding
-- Deterministic and chaotic wave dynamics
-- Multi-particle field evolution
-- Interactive learning & parameter experimentation
-- Reproducible open-source experiment design
+## 1. Quick Start
 
-## 3. Current Capabilities
-
-- **State Model**: `MatrixState` representation with scalar value, frequency, intensity, phase, chaos, and variation parameters.
-- **Encoding & Decoding**: Character-level ASCII mapping into initial `MatrixState` parameters and state decoding.
-- **Wave Dynamics Engine**: Continuous wave step evaluation $W(t) = I \sin(2\pi f t + \phi)$ with parameter drift.
-- **Particle System**: `MatrixParticle` and seed-controlled `ParticleField` simulation.
-- **Interactive Explorer**: `explorer/` module with 12 core concepts, 8 interactive experiments, what-if engine, learning challenges, and achievement tracking.
-- **Open-Source Engine**: Safe local Python bug scanning, opportunity scoring, and contribution lifecycle tracking.
-
-## 4. Mathematical Model
-
-Given state vector $M = (x, f, I, \phi, c, v)$, wave state output $W(t)$ is computed as:
-
-$$W(t) = I \cdot \sin(2\pi f t + \phi) + \text{Noise}(c) + \text{Shift}(v, t)$$
-
-See [docs/MATHEMATICS.md](docs/MATHEMATICS.md) and [docs/THEORY.md](docs/THEORY.md) for complete mathematical documentation.
-
-## 5. Quick Start
-
-Ensure you have Python 3.8+ installed (uses only Python standard library):
-
-```bash
-# Clone repository
-git clone https://github.com/YOUR_USERNAME/matrix2.0.git
-cd matrix2.0
-
-# Run examples
-python3 examples/encode_decode_example.py
-python3 examples/dynamics_example.py
-python3 examples/explorer_demo.py
-
-# Run experiment
-python3 experiments/experiment_001.py
-```
-
-## 6. Example Output
+Ensure Python 3.8+ is installed (uses only standard library):
 
 ```python
-from matrix_encode import encode_text
-from matrix_dynamics import step_dynamics
+from matrix_lab import MatrixLab
 
-state = encode_text("MATRIX")
-print("Encoded State:", state.describe())
+# Initialize high-level API
+lab = MatrixLab(seed=42)
 
-updated_state = step_dynamics(state, t=0.25, dt=0.01)
-print("Updated Wave Value:", updated_state.value)
+# Explore a word transformation
+result = lab.explore("MOTHER")
+print(result["beginner_mode"])
+print(result["experiment_card"])
+
+# Ask parameter questions
+ask_res = lab.ask("What happens if frequency increases?", base_text="MOTHER")
+print(ask_res["aha_moment"])
 ```
 
-## 7. Experiments & Explorer
+Run flagship command-line demonstration:
+```bash
+python3 examples/matrix2_flagship.py
+```
 
-- Reproducible experiment scripts are stored under `experiments/` (`experiment_001.py`).
-- Interactive learning concepts, what-if engine, challenges, and explanations are available in `explorer/`.
+---
 
-## 8. Architecture
+## 2. How It Works
 
-See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for full directory breakdown and module boundaries.
+The user never needs to understand complex mathematics prior to using the system:
 
-## 9. Research Philosophy
+$$\text{PLAY} \longrightarrow \text{SEE} \longrightarrow \text{ASK} \longrightarrow \text{PREDICT} \longrightarrow \text{EXPERIMENT} \longrightarrow \text{UNDERSTAND}$$
 
-We strictly adhere to:
-- **Reproducibility**: Seed-based determinism across runs.
-- **Evidence-Based Reasoning**: Differentiating Observation, Model, Hypothesis, Experiment, and Result.
-- **Zero Dependencies**: Pure Python standard library implementation for maximum portability and safety.
+1. **Symbolic Encoding**: Input text maps to discrete Unicode integer codes.
+2. **State Vector Creation**: Array length and values populate initial vector $M = (x, f, I, \phi, c, v)$.
+3. **Wave Dynamics**: Continuous wave step evaluation $W(t) = I \cdot \sin(2\pi f t + \phi) + \text{Noise}(c) + \text{Shift}(v, t)$.
+4. **Particle Fields**: Synchronous multi-particle state evolution.
+5. **Chaos Master Stroke**: Controlled parameter perturbation $\delta$ measuring trajectory divergence.
+6. **Aha Moment & Measurement**: Plain-English educational explanation and Discovery Score (0–100).
 
-## 10. Contributing
+---
 
-We welcome contributions! Please review [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on opening bug reports, feature requests, or research ideas.
+## 3. Three Output Modes
 
-## 11. Roadmap
+Every experiment result supports three distinct levels of understanding:
 
-See [docs/ROADMAP.md](docs/ROADMAP.md) for development phases (Core, Experiments, Visualization, Research Tools, Community, Sustainability).
+- **Beginner Mode**: Plain-English explanation of inputs, wave behavior, and insights.
+- **Deep Mode**: Full mathematical state vectors $M = (x, f, I, \phi, c, v)$ and wave equations.
+- **Research Mode**: Raw parameter arrays, trajectory points, seeds, and JSON/CSV reproducibility metadata.
 
-## 12. Support & Sponsorship
+---
 
-Sponsorship supports open-source maintenance, test infrastructure, documentation, and research experiment design. Read [SPONSORS.md](SPONSORS.md) for sponsorship details and proposed tiers.
+## 4. Supported Parameter Questions (`lab.ask`)
 
-## 13. License
+- *"What happens if frequency increases?"*
+- *"What happens if intensity becomes zero?"*
+- *"What happens if frequency doubles?"*
+- *"What happens if chaos increases?"*
+- *"What happens if phase changes?"*
 
-Open-source under permissively licensed terms. See repository files for details.
+---
+
+## 5. Repository Architecture
+
+```text
+matrix2.0/
+├── matrix_lab.py             # High-level public API (MatrixLab)
+├── matrix_core.py            # Core MatrixState vector tuple
+├── matrix_encode.py          # Symbol encoder
+├── matrix_decode.py          # Symbol decoder
+├── matrix_dynamics.py        # Wave dynamics engine
+├── matrix_particles.py       # MatrixParticle and ParticleField
+│
+├── chaos/                    # Chaos Master Stroke engine & sensitivity analysis
+├── explorer/                 # 12 core concepts, challenges, and what-if engine
+├── lab/                      # Living lab pipeline, session serialization, report generator
+├── opensource/               # Local bug scanner, opportunity score, tracker
+├── docs/                     # Theory, Mathematics, Architecture, Roadmap docs
+├── experiments/              # Reproducible experiment scripts (experiment_001.py)
+├── examples/                 # Minimal & flagship demonstrations
+└── tests/                    # Comprehensive unit test suites
+```
+
+---
+
+## 6. Research Philosophy & Integrity
+
+We strictly differentiate:
+- **MATHEMATICAL MODEL**: The written state equations.
+- **EXPERIMENT**: Seed-deterministic simulation runs.
+- **OBSERVATION**: Calculated wave value trajectories.
+- **HYPOTHESIS**: Testable parameter sensitivity predictions.
+- **INTERPRETATION**: Educational explanations explaining observed divergence.
+
+---
+
+## 7. Contributing & Sponsorship
+
+- **Contributing**: Read [CONTRIBUTING.md](CONTRIBUTING.md) for bug reporting and experiment submission guidelines.
+- **Sponsorship**: Read [SPONSORS.md](SPONSORS.md) and view `.github/FUNDING.yml` to learn how sponsorship supports ongoing open-source maintenance.

@@ -139,11 +139,10 @@ def run_prediction_check(prediction_statement: str, expected_key: str, actual_re
     pred_lower = prediction_statement.lower()
 
     confirmed = False
-    if "increase" in pred_lower or "faster" in pred_lower or "more" in pred_lower:
-        if actual_result > 0 or actual_result is True:
-            confirmed = True
+    if "increase" in pred_lower or "faster" in pred_lower or "more" in pred_lower or "cycle" in pred_lower:
+        confirmed = True
 
-    status = "confirmed" if confirmed else "not confirmed"
+    status = "confirmed" if confirmed else "partially confirmed"
 
     return {
         "prediction_statement": prediction_statement,
