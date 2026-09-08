@@ -10,6 +10,16 @@ An Experimental Mathematical & Computational Research Platform
 
 ---
 
+## Interactive Learning Philosophy
+
+> **MATRIX2.0 is not only something to read. It is something to explore.**
+
+$$\text{PLAY} \longrightarrow \text{OBSERVE} \longrightarrow \text{QUESTION} \longrightarrow \text{TEST} \longrightarrow \text{UNDERSTAND}$$
+
+Through the **MATRIX2.0 Explorer** (`explorer/`), users can interactively adjust parameters, ask *"What If?"*, validate challenges, and unlock achievements while mastering wave dynamics and symbolic state transformations.
+
+---
+
 ## 1. What is MATRIX2.0?
 
 MATRIX2.0 is an open-source research platform designed to model symbolic information (such as text input or discrete signals) as dynamic mathematical state vectors. Initial parameters evolve over time through wave equations, controlled chaotic noise, and parameter variation.
@@ -20,6 +30,7 @@ The project explores how symbolic information maps into continuous dynamical wav
 - Symbolic encoding and decoding
 - Deterministic and chaotic wave dynamics
 - Multi-particle field evolution
+- Interactive learning & parameter experimentation
 - Reproducible open-source experiment design
 
 ## 3. Current Capabilities
@@ -28,6 +39,7 @@ The project explores how symbolic information maps into continuous dynamical wav
 - **Encoding & Decoding**: Character-level ASCII mapping into initial `MatrixState` parameters and state decoding.
 - **Wave Dynamics Engine**: Continuous wave step evaluation $W(t) = I \sin(2\pi f t + \phi)$ with parameter drift.
 - **Particle System**: `MatrixParticle` and seed-controlled `ParticleField` simulation.
+- **Interactive Explorer**: `explorer/` module with 12 core concepts, 8 interactive experiments, what-if engine, learning challenges, and achievement tracking.
 - **Open-Source Engine**: Safe local Python bug scanning, opportunity scoring, and contribution lifecycle tracking.
 
 ## 4. Mathematical Model
@@ -50,6 +62,7 @@ cd matrix2.0
 # Run examples
 python3 examples/encode_decode_example.py
 python3 examples/dynamics_example.py
+python3 examples/explorer_demo.py
 
 # Run experiment
 python3 experiments/experiment_001.py
@@ -68,10 +81,10 @@ updated_state = step_dynamics(state, t=0.25, dt=0.01)
 print("Updated Wave Value:", updated_state.value)
 ```
 
-## 7. Experiments
+## 7. Experiments & Explorer
 
-Reproducible experiment scripts are stored under `experiments/`.
-- `experiment_001.py`: "MOTHER" symbolic transformation pipeline.
+- Reproducible experiment scripts are stored under `experiments/` (`experiment_001.py`).
+- Interactive learning concepts, what-if engine, challenges, and explanations are available in `explorer/`.
 
 ## 8. Architecture
 
