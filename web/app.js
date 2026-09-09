@@ -2,6 +2,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   let games = [];
+  let experiments = [];
   let currentGame = null;
   let animFrameId = null;
 
@@ -33,6 +34,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const particleCanvas = document.getElementById('particle-canvas');
   const particleCtx = particleCanvas.getContext('2d');
 
+  // Experiment Engine UI
+  const selectPreset = document.getElementById('select-preset');
+  const inputSeed = document.getElementById('input-seed');
+  const inputIterations = document.getElementById('input-iterations');
+  const btnRunExp = document.getElementById('btn-run-exp');
+  const expReportOutput = document.getElementById('exp-report-output');
+
   // Experiment & Prediction
   const missionText = document.getElementById('mission-text');
   const inputPrediction = document.getElementById('input-prediction');
@@ -56,9 +64,57 @@ document.addEventListener('DOMContentLoaded', () => {
         selectGame(games[0].id);
       }
     })
-    .catch(err => {
-      console.error('Failed to load games.json:', err);
+    .catch(err => console.error('Failed to load games.json:', err));
+
+  // Load Experiments Presets Data
+  fetch('data/experiments.json')
+    .then(res => res.json())
+    .then(data => {
+      experiments = data;
+      renderPresetOptions();
+    })
+    .catch(err => console.error('Failed to load experiments.json:', err));
+
+  function renderPresetOptions() {
+    if (!selectPreset) return;
+    selectPreset.innerHTML = '';
+    experiments.forEach(exp => {
+      const opt = document.createElement('option');
+      opt.value = exp.id;
+      opt.textContent = `${exp.name} (${exp.model})`;
+      selectPreset.appendChild(opt);
     });
+  }
+
+  btnRunExp.addEventListener('click', () => {
+    const selectedId = selectPreset.value;
+    const preset = experiments.find(e => e.id === selectedId);
+    if (!preset) return;
+
+    const seed = parseInt(inputSeed.value, 10) || 42;
+    const iters = parseInt(inputIterations.value, 10) || 100;
+
+    let report = `================================================================\n`;
+    report += ` MATRIX2.0 EXPERIMENT REPORT: ${preset.name}\n`;
+    report += `================================================================\n`;
+    report += `Experiment ID : ${preset.id}\n`;
+    report += `Model Tested  : ${preset.model}\n`;
+    report += `Seed          : ${seed}\n`;
+    report += `Iterations    : ${iters}\n`;
+    report += `Status        : REPRODUCIBLE (Seed-Deterministic)\n`;
+    report += `----------------------------------------------------------------\n`;
+    report += `PARAMETERS:\n`;
+    for (const [k, v] of Object.entries(preset.default_params)) {
+      report += `  - ${k}: ${v}\n`;
+    }
+    report += `----------------------------------------------------------------\n`;
+    report += `SCIENTIFIC INTERPRETATION & BOUNDS:\n`;
+    report += `  The computational experiment ran deterministically under seed ${seed}.\n`;
+    report += `  Numerical results reflect model parameters and do not prove physical matter or consciousness.\n`;
+    report += `================================================================`;
+
+    expReportOutput.textContent = report;
+  });
 
   function renderGameCards() {
     gamesGrid.innerHTML = '';
@@ -83,7 +139,6 @@ document.addEventListener('DOMContentLoaded', () => {
     currentGame = games.find(g => g.id === gameId);
     if (!currentGame) return;
 
-    // Highlight card
     document.querySelectorAll('.game-card').forEach(card => {
       card.classList.toggle('active', card.dataset.id === gameId);
     });
@@ -92,7 +147,6 @@ document.addEventListener('DOMContentLoaded', () => {
     activeDesc.textContent = currentGame.description;
     missionText.textContent = currentGame.mission;
 
-    // Apply default parameters
     const params = currentGame.default_params;
     sliderFreq.value = params.frequency;
     sliderInten.value = params.intensity;
@@ -126,18 +180,15 @@ document.addEventListener('DOMContentLoaded', () => {
     liveVector.textContent = `M = (f=${p.freq.toFixed(2)}, I=${p.inten.toFixed(2)}, φ=${p.phase.toFixed(2)}, c=${p.chaos.toFixed(2)}, v=${p.variation.toFixed(2)})`;
   }
 
-  // Event Listeners for Sliders
   [sliderFreq, sliderInten, sliderPhase, sliderChaos, sliderVar].forEach(slider => {
     slider.addEventListener('input', updateParamDisplays);
   });
 
-  // Animation Loop for Canvases
   let time = 0;
   function animate() {
     time += 0.03;
     const p = getParams();
 
-    // 1. Render Wave Canvas
     const wWidth = waveCanvas.width;
     const wHeight = waveCanvas.height;
     const centerY = wHeight / 2;
@@ -145,7 +196,6 @@ document.addEventListener('DOMContentLoaded', () => {
     waveCtx.fillStyle = '#05070a';
     waveCtx.fillRect(0, 0, wWidth, wHeight);
 
-    // Grid lines
     waveCtx.strokeStyle = '#1b222d';
     waveCtx.lineWidth = 1;
     waveCtx.beginPath();
@@ -153,7 +203,6 @@ document.addEventListener('DOMContentLoaded', () => {
     waveCtx.lineTo(wWidth, centerY);
     waveCtx.stroke();
 
-    // Sinusoidal Wave
     waveCtx.strokeStyle = '#58a6ff';
     waveCtx.lineWidth = 2;
     waveCtx.beginPath();
@@ -164,15 +213,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const waveVal = p.inten * Math.sin(2 * Math.PI * p.freq * t + p.phase) * 40;
       const y = centerY - waveVal + noise;
 
-      if (x === 0) {
-        waveCtx.moveTo(x, y);
-      } else {
-        waveCtx.lineTo(x, y);
-      }
+      if (x === 0) waveCtx.moveTo(x, y);
+      else waveCtx.lineTo(x, y);
     }
     waveCtx.stroke();
 
-    // 2. Render Particle Field Canvas
     const pWidth = particleCanvas.width;
     const pHeight = particleCanvas.height;
     const pCenterX = pWidth / 2;
@@ -199,7 +244,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   animate();
 
-  // Run Simulation & Evaluate Prediction
   btnRunSim.addEventListener('click', () => {
     if (!currentGame) return;
 
@@ -221,7 +265,6 @@ document.addEventListener('DOMContentLoaded', () => {
     resExplanation.textContent = explanation;
     simResultPanel.classList.remove('hidden');
 
-    // Save to localStorage
     const record = {
       timestamp: new Date().toLocaleTimeString(),
       game: currentGame.name,

@@ -113,6 +113,36 @@
       </div>
     </section>
 
+    <!-- Reproducible Experiment Engine Section -->
+    <section class="section-block">
+      <h2>Reproducible Experiment Engine</h2>
+      <div class="experiment-engine-layout">
+        <div class="exp-controls">
+          <label for="select-preset">Select Experiment Preset:</label>
+          <select id="select-preset" class="select-input">
+            <!-- Rendered by app.js -->
+          </select>
+
+          <div class="input-inline-group">
+            <label for="input-seed">Seed:</label>
+            <input type="number" id="input-seed" value="42" style="width: 80px;">
+
+            <label for="input-iterations">Iterations:</label>
+            <input type="number" id="input-iterations" value="100" style="width: 80px;">
+
+            <button id="btn-run-exp" class="btn-primary">Execute Experiment</button>
+          </div>
+        </div>
+
+        <div id="exp-report-card" class="inspector-card" style="margin-top:16px;">
+          <h4>Experiment Results & Cautious Interpretation</h4>
+          <div id="exp-report-output" class="vector-box" style="white-space: pre-wrap; font-family: var(--font-mono); font-size:0.8rem;">
+            Select an experiment preset above and click Execute Experiment.
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Experiment History (localStorage) -->
     <section class="section-block">
       <div class="history-header">

@@ -220,6 +220,40 @@ body {
   word-break: break-all;
 }
 
+/* Experiment Engine UI */
+.experiment-engine-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.select-input {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 0.85rem;
+  width: 100%;
+  margin-top: 4px;
+  margin-bottom: 12px;
+}
+
+.input-inline-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.85rem;
+}
+
+.input-inline-group input {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 6px 8px;
+}
+
 /* Visuals Panel */
 .canvas-card {
   background-color: var(--card-bg);
