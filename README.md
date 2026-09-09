@@ -1,18 +1,18 @@
 # MATRIX2.0
 
-An Open-Source Complexity-to-Simplicity Mathematical Research Engine & Visual Universe
+An Open-Source Complexity-to-Simplicity Mathematical Research Engine, Visual Universe & Simulation Arcade
 
 ---
 
-> *MATRIX2.0 lets you turn simple inputs into experiments and explore complex mathematical behavior step by step.*
+> *MATRIX2.0 lets you turn simple inputs into experiments, games, and visualizations to explore complex mathematical behavior step by step.*
 
-$$\text{INPUT} \rightarrow \text{STATE} \rightarrow \text{WAVE} \rightarrow \text{PARTICLES} \rightarrow \text{DYNAMICS} \rightarrow \text{CHAOS} \rightarrow \text{VISUALIZATION} \rightarrow \text{LEARNING}$$
+$$\text{PLAY} \rightarrow \text{PREDICT} \rightarrow \text{RUN} \rightarrow \text{OBSERVE} \rightarrow \text{EXPLAIN} \rightarrow \text{REPEAT}$$
 
 ---
 
 ## Scientific & Epistemological Disclaimer
 
-> *MATRIX2.0 is an experimental computational framework. Its visual patterns and trajectories represent plot-ready projections of mathematical state vectors, not physical particles, energy fields, or consciousness.*
+> *MATRIX2.0 is an experimental computational framework. Its simulation arcade games, visual patterns, and trajectories represent plot-ready projections of mathematical state vectors, not physical particles, energy fields, or consciousness.*
 
 ---
 
@@ -22,32 +22,45 @@ Ensure Python 3.8+ is installed (uses only standard library):
 
 ```python
 from matrix_lab import MatrixLab
-from visual.visual_state import change_one_parameter, get_visual_preset
-from matrix_core import MatrixState
+from arcade.games import REGISTRY
 
-# Initialize high-level API
+# Initialize high-level public API
 lab = MatrixLab(seed=42)
 
 # Explore a word transformation
 result = lab.explore("MOTHER")
 print(result["beginner_mode"])
-print(result["experiment_card"])
 
-# Visual change-one-parameter experiment
-preset = get_visual_preset("CALM_WAVE")
-state = MatrixState(**preset["params"])
-vis_exp = change_one_parameter(state, parameter="frequency", delta=0.5)
-print(vis_exp["explanations"]["beginner"])
+# Run an Arcade simulation game
+game = REGISTRY.get_game("wave_runner")
+res = game.run({"frequency": 2.0, "intensity": 1.5}, prediction="faster wave")
+print(res["explanations"]["simple"])
 ```
 
-Run flagship visual demonstration:
+Run terminal demonstration scripts:
 ```bash
+python3 examples/matrix2_flagship.py
 python3 examples/visual_universe_demo.py
+python3 examples/arcade_demo.py
 ```
 
 ---
 
-## 2. MATRIX2.0 Visual Universe (`visual/`)
+## 2. MATRIX2.0 Simulation Arcade (`arcade/`)
+
+The **MATRIX2.0 Simulation Arcade** features 7 interactive simulation games:
+
+1. **Wave Runner (`wave_runner`)**: Predict waveform changes across frequency, intensity, phase.
+2. **Phase Shift (`phase_shift`)**: Compare two wave systems under phase displacement shifts.
+3. **Chaos Race (`chaos_race`)**: Predict trajectory divergence from minute Master Stroke parameter perturbations.
+4. **Particle Dance (`particle_dance`)**: Observe multi-particle field state evolution.
+5. **Resonance Lab (`resonance_lab`)**: Align frequencies between two oscillating systems and measure correlation.
+6. **Pattern Hunter (`pattern_hunter`)**: Discover periodic sequences and trends in dynamic wave step output.
+7. **State Transformer (`state_transformer`)**: Transform text losslessly through text -> numbers -> state -> decode pipeline.
+
+---
+
+## 3. MATRIX2.0 Visual Universe (`visual/`)
 
 Complex mathematical behavior becomes easier to understand when users can see how parameters change the system:
 
@@ -59,7 +72,7 @@ Complex mathematical behavior becomes easier to understand when users can see ho
 
 ---
 
-## 3. How It Works
+## 4. How It Works
 
 The user never needs to understand complex mathematics prior to using the system:
 
@@ -74,7 +87,7 @@ $$\text{PLAY} \longrightarrow \text{SEE} \longrightarrow \text{ASK} \longrightar
 
 ---
 
-## 4. Three Output Modes
+## 5. Three Output Modes
 
 Every experiment result supports three distinct levels of understanding:
 
@@ -84,7 +97,7 @@ Every experiment result supports three distinct levels of understanding:
 
 ---
 
-## 5. Repository Architecture
+## 6. Repository Architecture
 
 ```text
 matrix2.0/
@@ -95,6 +108,7 @@ matrix2.0/
 ├── matrix_dynamics.py        # Wave dynamics engine
 ├── matrix_particles.py       # MatrixParticle and ParticleField
 │
+├── arcade/                   # Simulation Arcade games, prediction evaluator, scoring, missions
 ├── visual/                   # Visual Universe data layer (Wave, Particles, Trajectory, Comparison)
 ├── chaos/                    # Chaos Master Stroke engine & sensitivity analysis
 ├── explorer/                 # 12 core concepts, challenges, and what-if engine
@@ -102,13 +116,13 @@ matrix2.0/
 ├── opensource/               # Local bug scanner, opportunity score, tracker
 ├── docs/                     # Theory, Mathematics, Architecture, Roadmap docs
 ├── experiments/              # Reproducible experiment scripts (experiment_001.py)
-├── examples/                 # Minimal, visual & flagship demonstrations
+├── examples/                 # Minimal, visual, flagship & arcade demonstrations
 └── tests/                    # Comprehensive unit test suites
 ```
 
 ---
 
-## 6. Research Philosophy & Integrity
+## 7. Research Philosophy & Integrity
 
 We strictly differentiate:
 - **MATHEMATICAL MODEL**: The written state equations.
@@ -119,7 +133,7 @@ We strictly differentiate:
 
 ---
 
-## 7. Contributing & Sponsorship
+## 8. Contributing & Sponsorship
 
 - **Contributing**: Read [CONTRIBUTING.md](CONTRIBUTING.md) for bug reporting and experiment submission guidelines.
 - **Sponsorship**: Read [SPONSORS.md](SPONSORS.md) and view `.github/FUNDING.yml` to learn how sponsorship supports ongoing open-source maintenance.
