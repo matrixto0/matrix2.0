@@ -1,6 +1,6 @@
 # MATRIX2.0
 
-An Open-Source Complexity-to-Simplicity Mathematical Research Engine, Visual Universe & Simulation Arcade
+An Open-Source Complexity-to-Simplicity Mathematical Research Engine, Visual Universe, Simulation Arcade & Web Universe
 
 ---
 
@@ -43,6 +43,12 @@ python3 examples/matrix2_flagship.py
 python3 examples/visual_universe_demo.py
 python3 examples/arcade_demo.py
 ```
+
+Launch the interactive **Web Simulation Universe**:
+```bash
+python3 -m http.server 8000 --directory web
+```
+Then open `http://localhost:8000` in your browser.
 
 ---
 
@@ -108,6 +114,7 @@ matrix2.0/
 ├── matrix_dynamics.py        # Wave dynamics engine
 ├── matrix_particles.py       # MatrixParticle and ParticleField
 │
+├── web/                      # Web Simulation Universe (index.html, style.css, app.js, data/games.json)
 ├── arcade/                   # Simulation Arcade games, prediction evaluator, scoring, missions
 ├── visual/                   # Visual Universe data layer (Wave, Particles, Trajectory, Comparison)
 ├── chaos/                    # Chaos Master Stroke engine & sensitivity analysis
