@@ -1,6 +1,6 @@
 # MATRIX2.0
 
-An Open-Source Complexity-to-Simplicity Mathematical Research Engine, Visual Universe & Simulation Arcade
+An Open-Source Complexity-to-Simplicity Mathematical Research Engine, Visual Universe, Simulation Arcade & Web Universe
 
 ---
 
@@ -43,6 +43,12 @@ python3 examples/matrix2_flagship.py
 python3 examples/visual_universe_demo.py
 python3 examples/arcade_demo.py
 ```
+
+Launch the interactive **Web Simulation Universe**:
+```bash
+python3 -m http.server 8000 --directory web
+```
+Then open `http://localhost:8000` in your browser.
 
 ---
 
@@ -100,24 +106,21 @@ Every experiment result supports three distinct levels of understanding:
 ## 6. Repository Architecture
 
 ```text
-matrix2.0/
-├── matrix_lab.py             # High-level public API (MatrixLab)
-├── matrix_core.py            # Core MatrixState vector tuple
-├── matrix_encode.py          # Symbol encoder
-├── matrix_decode.py          # Symbol decoder
-├── matrix_dynamics.py        # Wave dynamics engine
-├── matrix_particles.py       # MatrixParticle and ParticleField
+MATRIX2.0 Architecture
 │
-├── arcade/                   # Simulation Arcade games, prediction evaluator, scoring, missions
-├── visual/                   # Visual Universe data layer (Wave, Particles, Trajectory, Comparison)
-├── chaos/                    # Chaos Master Stroke engine & sensitivity analysis
-├── explorer/                 # 12 core concepts, challenges, and what-if engine
-├── lab/                      # Living lab pipeline, session serialization, report generator
-├── opensource/               # Local bug scanner, opportunity score, tracker
-├── docs/                     # Theory, Mathematics, Architecture, Roadmap docs
-├── experiments/              # Reproducible experiment scripts (experiment_001.py)
-├── examples/                 # Minimal, visual, flagship & arcade demonstrations
-└── tests/                    # Comprehensive unit test suites
+├── Core
+├── Encoder
+├── Decoder
+├── Dynamics
+├── Particles
+├── Chaos Laboratory
+├── Living Lab
+├── Visual Universe
+├── Simulation Arcade
+├── Web Simulation Universe
+└── Experiment Engine (`experiments/`)
+
+The Experiment Engine is the layer that makes MATRIX2.0 experiments reproducible, sweepable, and comparable.
 ```
 
 ---

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MATRIX2.0 — Web Simulation Universe</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo-container">
+      <span class="logo-title">MATRIX2.0</span>
+      <span class="logo-subtitle">Simulation Universe</span>
+    </div>
+    <div class="motto">"Encode. Simulate. Predict. Observe. Discover."</div>
+  </header>
+
+  <main class="container">
+    <!-- Hero Disclaimer -->
+    <section class="disclaimer-banner">
+      <p><strong>Scientific & Epistemological Disclaimer:</strong> MATRIX2.0 is an experimental computational framework. Its simulation arcade games, live canvas waves, and particle projections represent mathematical state vectors, not physical particles, energy fields, or consciousness.</p>
+    </section>
+
+    <!-- Arcade Dashboard Grid -->
+    <section class="section-block">
+      <h2>Arcade Dashboard</h2>
+      <div id="games-grid" class="grid-cards">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+    </section>
+
+    <!-- Simulation Workspace -->
+    <section class="section-block workspace-grid">
+      <!-- Left Column: Controls & Inspector -->
+      <div class="controls-panel">
+        <h3 id="active-game-title">Select a Game</h3>
+        <p id="active-game-desc">Choose a game above to start exploring.</p>
+
+        <!-- Parameter Controls -->
+        <div class="param-group">
+          <label for="slider-freq">Frequency (<span id="val-freq">1.00</span> Hz)</label>
+          <input type="range" id="slider-freq" min="0.1" max="5.0" step="0.1" value="1.0">
+          <span class="param-help">Controls how quickly the wave oscillates.</span>
+        </div>
+
+        <div class="param-group">
+          <label for="slider-inten">Intensity (<span id="val-inten">1.00</span>)</label>
+          <input type="range" id="slider-inten" min="0.1" max="3.0" step="0.1" value="1.0">
+          <span class="param-help">Controls the amplitude peak height of the wave.</span>
+        </div>
+
+        <div class="param-group">
+          <label for="slider-phase">Phase (<span id="val-phase">0.00</span> rad)</label>
+          <input type="range" id="slider-phase" min="0" max="6.28" step="0.05" value="0.0">
+          <span class="param-help">Controls the wave's starting offset in its cycle.</span>
+        </div>
+
+        <div class="param-group">
+          <label for="slider-chaos">Chaos (<span id="val-chaos">0.00</span>)</label>
+          <input type="range" id="slider-chaos" min="0" max="0.2" step="0.01" value="0.0">
+          <span class="param-help">Controls the amount of controlled stochastic noise.</span>
+        </div>
+
+        <div class="param-group">
+          <label for="slider-var">Variation (<span id="val-var">0.00</span>)</label>
+          <input type="range" id="slider-var" min="0" max="0.1" step="0.01" value="0.0">
+          <span class="param-help">Controls small systematic state parameter drift.</span>
+        </div>
+
+        <!-- MATRIX State Inspector -->
+        <div class="inspector-card">
+          <h4>MATRIX State Vector Inspector</h4>
+          <div class="equation-box" id="live-equation">W(t) = 1.00 sin(2π · 1.00t + 0.00)</div>
+          <div class="vector-box" id="live-vector">M = (x=0.0000, f=1.0000, I=1.0000, φ=0.0000, c=0.0000, v=0.0000)</div>
+        </div>
+      </div>
+
+      <!-- Right Column: Canvas Visualizations & Predictions -->
+      <div class="visuals-panel">
+        <div class="canvas-card">
+          <div class="canvas-header">
+            <h4>Live Sinusoidal Wave Canvas</h4>
+            <span class="badge">W(t) = I sin(2πft + φ)</span>
+          </div>
+          <canvas id="wave-canvas" width="600" height="180"></canvas>
+        </div>
+
+        <div class="canvas-card">
+          <div class="canvas-header">
+            <h4>Particle Field Polar Projection Canvas</h4>
+            <span class="badge">MatrixParticle Field</span>
+          </div>
+          <canvas id="particle-canvas" width="600" height="180"></canvas>
+        </div>
+
+        <!-- Prediction & Mission Controls -->
+        <div class="experiment-card-ui">
+          <h4>Scientific Prediction & Experiment Loop</h4>
+          <div class="mission-box" id="mission-box">
+            <strong>Active Mission:</strong> <span id="mission-text">Predict the wave impact before running!</span>
+          </div>
+          <div class="input-row">
+            <input type="text" id="input-prediction" placeholder="e.g. Increasing frequency will make the wave oscillate faster...">
+            <button id="btn-run-sim" class="btn-primary">Run Simulation</button>
+          </div>
+
+          <div id="sim-result-panel" class="result-panel hidden">
+            <div class="res-row"><strong>Prediction Result:</strong> <span id="res-status" class="status-badge">Confirmed</span></div>
+            <div class="res-row"><strong>Score Earned:</strong> <span id="res-score">50 pts</span></div>
+            <div class="res-row"><strong>Explanation:</strong> <p id="res-explanation">Wave frequency increased oscillation rate.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reproducible Experiment Engine Section -->
+    <section class="section-block">
+      <h2>Reproducible Experiment Engine</h2>
+      <div class="experiment-engine-layout">
+        <div class="exp-controls">
+          <label for="select-preset">Select Experiment Preset:</label>
+          <select id="select-preset" class="select-input">
+            <!-- Rendered by app.js -->
+          </select>
+
+          <div class="input-inline-group">
+            <label for="input-seed">Seed:</label>
+            <input type="number" id="input-seed" value="42" style="width: 80px;">
+
+            <label for="input-iterations">Iterations:</label>
+            <input type="number" id="input-iterations" value="100" style="width: 80px;">
+
+            <button id="btn-run-exp" class="btn-primary">Execute Experiment</button>
+          </div>
+        </div>
+
+        <div id="exp-report-card" class="inspector-card" style="margin-top:16px;">
+          <h4>Experiment Results & Cautious Interpretation</h4>
+          <div id="exp-report-output" class="vector-box" style="white-space: pre-wrap; font-family: var(--font-mono); font-size:0.8rem;">
+            Select an experiment preset above and click Execute Experiment.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experiment History (localStorage) -->
+    <section class="section-block">
+      <div class="history-header">
+        <h2>Local Experiment History (localStorage)</h2>
+        <button id="btn-clear-history" class="btn-secondary">Clear Experiment History</button>
+      </div>
+      <div class="table-container">
+        <table id="history-table">
+          <thead>
+            <tr>
+              <th>Timestamp</th>
+              <th>Game</th>
+              <th>State Vector</th>
+              <th>Prediction</th>
+              <th>Result</th>
+              <th>Score</th>
+            </tr>
+          </thead>
+          <tbody id="history-rows">
+            <!-- Rows rendered dynamically by app.js -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>MATRIX2.0 Web Simulation Universe — Pure Python & Standard Web Technologies</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

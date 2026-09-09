@@ -1,0 +1,67 @@
+[
+  {
+    "id": "wave_stability",
+    "name": "Wave Stability Experiment",
+    "model": "wave_stability",
+    "description": "Measures sinusoidal wave trajectory stability and baseline deviation under chaos.",
+    "default_params": {
+      "frequency": 1.0,
+      "intensity": 1.0,
+      "phase": 0.0,
+      "chaos": 0.02,
+      "variation": 0.01
+    },
+    "seed": 42,
+    "iterations": 100
+  },
+  {
+    "id": "phase_sensitivity",
+    "name": "Phase Sensitivity Experiment",
+    "model": "phase_sensitivity",
+    "description": "Measures step trajectory sensitivity across small angular phase displacements.",
+    "default_params": {
+      "frequency": 1.0,
+      "intensity": 1.0,
+      "phase": 0.0,
+      "delta_phase": 0.1
+    },
+    "seed": 42,
+    "iterations": 100
+  },
+  {
+    "id": "chaos_divergence",
+    "name": "Chaos Divergence Experiment",
+    "model": "chaos_divergence",
+    "description": "Measures trajectory divergence over time steps under stochastic perturbations.",
+    "default_params": {
+      "frequency": 1.0,
+      "intensity": 1.0,
+      "chaos": 0.05
+    },
+    "seed": 42,
+    "iterations": 100
+  },
+  {
+    "id": "particle_response",
+    "name": "Particle Response Experiment",
+    "model": "particle_response",
+    "description": "Measures multi-particle mean position and spatial dispersion statistics.",
+    "default_params": {
+      "frequency": 1.2,
+      "intensity": 1.5
+    },
+    "seed": 42,
+    "iterations": 100
+  },
+  {
+    "id": "encoding_transformation",
+    "name": "Encoding Transformation Experiment",
+    "model": "encoding_transformation",
+    "description": "Measures transformation from symbolic text input to state vector wave dynamics.",
+    "default_params": {
+      "text": "MATRIX2.0"
+    },
+    "seed": 42,
+    "iterations": 100
+  }
+]
