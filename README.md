@@ -1,6 +1,6 @@
 # MATRIX2.0
 
-An experimental mathematical framework for symbolic encoding, decoding, dynamical systems, and reproducible computational research.
+An experimental mathematical framework for symbolic encoding, decoding, dynamical systems, reproducible computational research, and structured discovery.
 
 ## System Architecture
 
@@ -15,7 +15,10 @@ MATRIX2.0
 ├── Visual Universe
 ├── Simulation Arcade
 ├── Experiment Engine
-└── Research Dashboard
+├── Research Framework
+├── Local Research API
+├── Research Dashboard
+└── Knowledge Graph + Discovery Engine
 ```
 
 ## Layers & Components
@@ -29,9 +32,18 @@ MATRIX2.0
 7. **Visual Universe** (`visual/`): Visual rendering state representations.
 8. **Simulation Arcade** (`arcade/`): Interactive prediction games and scoring.
 9. **Experiment Engine** (`experiments/`): Deterministic reproducible experiment runner and statistical comparisons.
-10. **Research Dashboard** (`dashboard/`): Local visual dashboard for exploring states, running experiments, comparing metrics, and logging research records.
+10. **Research Framework** (`research/`): Scientific hypothesis, observation, and conclusion primitives.
+11. **Local Research API** (`api/`): HTTP REST endpoints exposing state, wave, particle, and knowledge endpoints.
+12. **Research Dashboard** (`dashboard/`): Local visual dashboard for exploring states, running experiments, comparing metrics, and logging research records.
+13. **Knowledge Graph + Discovery Engine** (`knowledge/`): Structured graph network connecting computational artifacts and detecting model-specific computational patterns.
 
 ## Usage & Local Launch
+
+Launch the Research API server locally:
+
+```bash
+python3 api/server.py
+```
 
 Launch the Research Dashboard locally:
 

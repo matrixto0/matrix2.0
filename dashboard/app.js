@@ -6,6 +6,7 @@ let vizView = null;
 let expView = null;
 let compView = null;
 let metricsView = null;
+let knowledgeView = null;
 let notebookCtrl = null;
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -14,6 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     expView = new ExperimentView(window.dashboardState);
     compView = new ComparisonView();
     metricsView = new MetricsView("metricsCanvas");
+    knowledgeView = new KnowledgeView("knowledgeCanvas");
     notebookCtrl = new NotebookController(window.dashboardState);
 
     // Load architecture layers from config
@@ -25,6 +27,32 @@ document.addEventListener("DOMContentLoaded", () => {
         .catch(err => {
             console.error("Config load error:", err);
         });
+
+    // Populate initial Knowledge Graph nodes
+    const initialGraph = {
+        nodes: [
+            { id: "component_core", type: "concept", name: "Mathematical Core" },
+            { id: "component_encoder", type: "concept", name: "Encoder" },
+            { id: "component_decoder", type: "concept", name: "Decoder" },
+            { id: "component_dynamics", type: "concept", name: "Dynamics" },
+            { id: "component_particles", type: "concept", name: "Particles" },
+            { id: "component_chaos", type: "concept", name: "Chaos Lab" },
+            { id: "component_experiments", type: "concept", name: "Experiments" },
+            { id: "component_visual", type: "concept", name: "Visual Universe" },
+            { id: "param_f", type: "parameter", name: "Frequency (f)" },
+            { id: "param_I", type: "parameter", name: "Intensity (I)" }
+        ],
+        relationships: [
+            { source_id: "component_encoder", target_id: "component_core", type: "PRODUCES" },
+            { source_id: "component_core", target_id: "component_dynamics", type: "DEPENDS_ON" },
+            { source_id: "component_dynamics", target_id: "component_particles", type: "PRODUCES" },
+            { source_id: "component_experiments", target_id: "component_core", type: "USES_PARAMETER" },
+            { source_id: "component_visual", target_id: "component_core", type: "VISUALIZES" },
+            { source_id: "param_f", target_id: "component_core", type: "DEPENDS_ON" },
+            { source_id: "param_I", target_id: "component_core", type: "DEPENDS_ON" }
+        ]
+    };
+    knowledgeView.setGraphData(initialGraph);
 
     // Subscribe to state updates
     window.dashboardState.subscribe(state => {
@@ -65,6 +93,10 @@ function switchTab(tabId) {
         btn.getAttribute("onclick") && btn.getAttribute("onclick").includes(tabId)
     );
     if (activeBtn) activeBtn.classList.add("active");
+
+    if (tabId === "knowledge" && knowledgeView) {
+        knowledgeView.render();
+    }
 }
 
 function renderArchitecture(layers) {

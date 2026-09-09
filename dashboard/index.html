@@ -26,6 +26,8 @@
         <button class="tab-btn" onclick="switchTab('live-sim')">LIVE SIMULATION</button>
         <button class="tab-btn" onclick="switchTab('comparison')">COMPARISON</button>
         <button class="tab-btn" onclick="switchTab('metrics')">METRICS</button>
+        <button class="tab-btn" onclick="switchTab('knowledge')">KNOWLEDGE GRAPH</button>
+        <button class="tab-btn" onclick="switchTab('discovery')">DISCOVERY EXPLORER</button>
         <button class="tab-btn" onclick="switchTab('history')">HISTORY</button>
         <button class="tab-btn" onclick="switchTab('notebook')">NOTEBOOK</button>
         <button class="tab-btn" onclick="switchTab('docs')">DOCUMENTATION</button>
@@ -189,6 +191,38 @@
             </div>
         </section>
 
+        <!-- KNOWLEDGE GRAPH SECTION -->
+        <section id="tab-knowledge" class="tab-section">
+            <div class="panel-card">
+                <h3>System Knowledge Graph</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">
+                    Interactive visualization of concepts, parameters, states, experiments, and relationships.
+                </p>
+                <canvas id="knowledgeCanvas" width="800" height="400"></canvas>
+            </div>
+        </section>
+
+        <!-- DISCOVERY EXPLORER SECTION -->
+        <section id="tab-discovery" class="tab-section">
+            <div class="panel-card">
+                <h3>Discovery Explorer</h3>
+                <div class="warning-banner">
+                    Discovery within the MATRIX2.0 model — does not establish physical universe laws.
+                </div>
+                <div id="discovery-cards-list">
+                    <div class="panel-card" style="background-color: var(--bg-tertiary);">
+                        <h4>Monotonic Energy Scaling Pattern</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">
+                            Discovered pattern: Monotonic increase in mean energy observed as frequency parameter increases.
+                        </p>
+                        <div style="font-size: 0.8rem; font-family: var(--font-mono); margin-top: 0.5rem; color: var(--accent-blue);">
+                            Confidence Score: 0.80 | Reproducible: Seed 42
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- HISTORY SECTION -->
         <section id="tab-history" class="tab-section">
             <div class="panel-card">
@@ -269,6 +303,7 @@
     <script src="experiment_view.js"></script>
     <script src="comparison_view.js"></script>
     <script src="metrics_view.js"></script>
+    <script src="knowledge_view.js"></script>
     <script src="notebook.js"></script>
     <script src="app.js"></script>
 </body>
