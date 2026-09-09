@@ -1,0 +1,24 @@
+{
+  "title": "MATRIX2.0 Research Dashboard",
+  "subtitle": "Explore mathematical states, simulations, experiments, and patterns.",
+  "version": "2.0.0",
+  "architecture_layers": [
+    {"name": "Text", "purpose": "Raw textual or semantic input stream", "status": "Implemented"},
+    {"name": "Encoding", "purpose": "Convert text into numerical state representation M", "status": "Implemented"},
+    {"name": "State", "purpose": "Maintain 6D state vector M = (x, f, I, φ, c, v)", "status": "Implemented"},
+    {"name": "Dynamics", "purpose": "Evolve mathematical state across time steps", "status": "Implemented"},
+    {"name": "Particles", "purpose": "Map computational dynamics to particle fields", "status": "Implemented"},
+    {"name": "Chaos", "purpose": "Inject controlled non-linear perturbations", "status": "Implemented"},
+    {"name": "Experiments", "purpose": "Reproducible experiment execution and tracking", "status": "Implemented"},
+    {"name": "Visualization", "purpose": "Interactive wave, particle, and metric rendering", "status": "Implemented"}
+  ],
+  "default_state": {
+    "x": 1.0,
+    "f": 1.0,
+    "I": 1.0,
+    "phi": 0.0,
+    "c": 0.1,
+    "v": 0.1
+  },
+  "disclaimer": "Comparison describes differences between model outputs; it does not establish physical causation. Observations are model-dependent and should not be treated as established physical facts."
+}
