@@ -35,3 +35,7 @@ def encode(text: str) -> Tuple[MatrixState, Dict[str, Any]]:
     }
 
     return state, metadata
+
+
+# Backwards compatibility alias
+encode_text = encode

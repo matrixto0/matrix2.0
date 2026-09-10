@@ -22,3 +22,7 @@ def decode(state: MatrixState, metadata: Optional[Dict[str, Any]] = None) -> str
         return ""
 
     return f"DecodedState(val={state.value}, freq={state.frequency})"
+
+
+# Backwards compatibility alias
+decode_values = decode
