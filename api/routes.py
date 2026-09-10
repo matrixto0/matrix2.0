@@ -4,6 +4,8 @@ Routing and request handling logic for MATRIX2.0 Local Research API.
 
 import json
 from urllib.parse import urlparse, parse_qs
+from matrix_core import MatrixState
+from matrix_dynamics import step, evolve
 from knowledge.registry import build_system_graph
 from knowledge.query import QueryEngine
 from knowledge.discovery import DiscoveryEngine
@@ -13,9 +15,12 @@ SYSTEM_GRAPH = build_system_graph()
 QUERY_ENGINE = QueryEngine(SYSTEM_GRAPH)
 DISCOVERY_ENGINE = DiscoveryEngine()
 
+CURRENT_STATE = MatrixState(value=1.0, frequency=1.0, intensity=1.0, phase=0.0, chaos=0.1, variation=0.1)
+
 
 def handle_api_request(path: str, method: str = "GET", body_data: dict = None) -> tuple[int, dict]:
     """Routes HTTP API request paths to structured JSON responses."""
+    global CURRENT_STATE
     parsed_url = urlparse(path)
     clean_path = parsed_url.path.rstrip("/")
 
@@ -32,6 +37,50 @@ def handle_api_request(path: str, method: str = "GET", body_data: dict = None) -
                 "discovery_engine": True
             }
         }
+
+    # GET /api/state
+    if clean_path in ("/api/state", "/state") and method == "GET":
+        return 200, {"state": CURRENT_STATE.to_dict()}
+
+    # POST /api/state
+    if clean_path in ("/api/state", "/state") and method == "POST":
+        if not body_data:
+            return 400, {"error": "Missing body payload"}
+        try:
+            CURRENT_STATE = MatrixState.from_dict(body_data)
+            return 200, {"status": "updated", "state": CURRENT_STATE.to_dict()}
+        except Exception as e:
+            return 400, {"error": f"Invalid state payload: {str(e)}"}
+
+    # GET /api/experiments
+    if clean_path in ("/api/experiments", "/experiments") and method == "GET":
+        experiments = [
+            {"id": "exp_001_phase_stability", "name": "Phase Stability Under Variation", "seed": 42},
+            {"id": "exp_002_chaos_transition", "name": "Chaos Perturbation Transition", "seed": 123}
+        ]
+        return 200, {"experiments": experiments, "count": len(experiments)}
+
+    # POST /api/experiments/{id}/run
+    if clean_path.startswith("/api/experiments/") and clean_path.endswith("/run") and method == "POST":
+        exp_id = clean_path.split("/")[-2]
+        trajectory = evolve(CURRENT_STATE, steps=10)
+        return 200, {
+            "experiment_id": exp_id,
+            "seed": 42,
+            "steps": len(trajectory),
+            "measurements": {"mean_value": CURRENT_STATE.value, "mean_energy": CURRENT_STATE.intensity ** 2}
+        }
+
+    # GET /api/games
+    if clean_path in ("/api/games", "/games") and method == "GET":
+        games = [
+            {"id": "game_phase_shift", "title": "Phase Shift Predictor", "genre": "Predictive Dynamics"}
+        ]
+        return 200, {"games": games, "count": len(games)}
+
+    # GET /api/metrics
+    if clean_path in ("/api/metrics", "/metrics") and method == "GET":
+        return 200, {"metrics": {"system_load": 0.05, "active_nodes": len(SYSTEM_GRAPH.nodes)}}
 
     # GET /api/knowledge/nodes
     if clean_path in ("/api/knowledge/nodes", "/knowledge/nodes"):
@@ -59,7 +108,6 @@ def handle_api_request(path: str, method: str = "GET", body_data: dict = None) -
 
     # GET /api/knowledge/discoveries
     if clean_path in ("/api/knowledge/discoveries", "/knowledge/discoveries"):
-        # Run discovery on sample runs
         sample_results = [
             {"experiment_id": "exp_1", "seed": 42, "configuration": {"f": 1.0}, "measurements": {"mean_energy": 1.0}},
             {"experiment_id": "exp_2", "seed": 42, "configuration": {"f": 2.0}, "measurements": {"mean_energy": 4.0}}
